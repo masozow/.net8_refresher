@@ -1,4 +1,5 @@
 using api.data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Configuration.AddUserSecrets<Program>();
 builder.Configuration.AddEnvironmentVariables();
 
+// Console.WriteLine(builder.Configuration["DB_PASSWORD"]);
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
