@@ -19,7 +19,8 @@ namespace api.mappers
                 Price = stockModel.Price,
                 LastDividend = stockModel.LastDividend,
                 Industry = stockModel.Industry,
-                MarketCap = stockModel.MarketCap
+                MarketCap = stockModel.MarketCap,
+                Comments = [.. stockModel.Comments.Select(c => c.ToCommentDto())]
             };
         }
 
