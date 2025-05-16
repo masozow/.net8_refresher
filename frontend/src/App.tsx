@@ -5,8 +5,8 @@ import { ThemeProvider } from "./components/theme-provider";
 function App() {
   return (
     <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <MyCard />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" >
+        <MyCard companyName="Apple" price={100} companySymbol="AAPL" />
       </ThemeProvider>
     </>
   );

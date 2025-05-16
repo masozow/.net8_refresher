@@ -1,16 +1,20 @@
+import type { JSX } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
 
-type Props = {};
+interface Props  {
+  companyName: string;
+  price: number;
+  companySymbol: string;
+};
 
-const MyCard = (props: Props) => {
+const MyCard: React.FC<Props> = ({companyName, price, companySymbol}: Props): JSX.Element => {
   return (
     <div>
       <Card className="w-[20rem] h-[auto]">
@@ -18,13 +22,13 @@ const MyCard = (props: Props) => {
           <CardDescription className="flex justify-center align-middle">
             <Avatar className="w-40 h-40">
               <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>{companySymbol}</AvatarFallback>
             </Avatar>
           </CardDescription>
-          <CardTitle>AAPL</CardTitle>
+          <CardTitle>{companyName} ({companySymbol})</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>$150</p>
+          <p>${price}</p>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
             Consectetur debitis, unde tempora soluta voluptates at nesciunt
