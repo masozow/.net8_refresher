@@ -17,7 +17,7 @@ interface Props  {
 const MyCard: React.FC<Props> = ({companyName, price, companySymbol}: Props): JSX.Element => {
   return (
     <div>
-      <Card className="w-[20rem] h-[auto]">
+      <Card className="w-[20rem] h-[auto] my-2">
         <CardHeader>
           <CardDescription className="flex justify-center align-middle">
             <Avatar className="w-40 h-40">

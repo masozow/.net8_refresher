@@ -47,6 +47,7 @@ export const SearchForm:React.FC<React.ComponentProps<"form"> > = ({ ...props }:
         <Button type="submit" onClick={onClick}  variant="outline" className="mx-1">
           Search
         </Button>
+        {serverError && <p className="text-red-500">{serverError}</p>}
          </div>
       </div>
       

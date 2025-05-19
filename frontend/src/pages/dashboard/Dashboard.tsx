@@ -12,12 +12,8 @@ export default function Page() {
             <SiteHeader />
             <div className="flex flex-1">
             <AppSidebar />
-            <SidebarInset>
-
-                <div className="flex items-center justify-center">
+            <SidebarInset className="flex items-center justify-center py-2">
                 <MyCardList className="flex flex-col gap-1 md:flex-row md:gap-4" />
-                </div>
-
             </SidebarInset>
             </div>
       </SidebarProvider>
