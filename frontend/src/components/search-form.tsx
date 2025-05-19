@@ -2,7 +2,6 @@ import { Search } from "lucide-react"
 import { Label } from "@/components/ui/label"
 import { SidebarInput } from "@/components/ui/sidebar"
 import { useState, type JSX, type SyntheticEvent } from "react"
-import { Button } from "./ui/button"
 import type { CompanySearch } from "@/API/company"
 import { searchCompanies } from "@/API/api"
 
@@ -18,7 +17,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({ ...props }: SearchFormPr
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(event.target.value);
     }
-    const onClick = async (e:SyntheticEvent) => {
+    const onSearchSubmit = async (e:SyntheticEvent) => {
       e.preventDefault();
       const result = await searchCompanies(search);
       if(typeof result ==="string"){
@@ -30,7 +29,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({ ...props }: SearchFormPr
       console.log("Error: ", serverError);
     }
   return (
-    <form {...props}>
+    <form {...props} onSubmit={onSearchSubmit}>
       <div className="relative">
         <div className="flex flex-row items-center justify-center"> 
         <Label htmlFor="search" className="sr-only">
@@ -44,9 +43,6 @@ export const SearchForm: React.FC<SearchFormProps> = ({ ...props }: SearchFormPr
           onChange={handleChange} 
         />
         <Search className="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-50 select-none" />
-        <Button type="submit" onClick={onClick}  variant="outline" className="mx-1">
-          Search
-        </Button>
         {serverError && <p className="text-red-500">{serverError}</p>}
          </div>
       </div>
