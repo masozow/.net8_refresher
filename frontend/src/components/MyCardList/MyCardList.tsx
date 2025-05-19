@@ -1,29 +1,24 @@
 import type { JSX } from "react"
 import MyCard from "../MyCard/MyCard"
 import { cn } from "@/lib/utils"
-
+import type { CompanySearch } from "@/API/company"
+import {v4 as uuidv4} from 'uuid'
 interface Props  {
-    className?: string
+    className?: string,
+    searchResult?: CompanySearch[]
 }
 
-const MyCardList: React.FC<Props> = (className: Props): JSX.Element => {
+const MyCardList: React.FC<Props> = ({className,searchResult}: Props): JSX.Element => {
   return (
-    <div className={cn("", className)}>
-        <MyCard
-          companyName="Apple"
-          companySymbol="AAPL"
-          price={100}
-        />
-        <MyCard
-          companyName="Microsoft"
-          companySymbol="MSFT"
-          price={120}
-        />
-        <MyCard
-          companyName="Palantir"
-          companySymbol="PLTR"
-          price={50}
-        />
+    <div className={cn("flex flex-wrap justify-center gap-4", className)}>
+      { searchResult?.length !== 0 ?
+        searchResult?.map((company) => (
+          <MyCard
+            id={company.symbol}
+            key={uuidv4()}
+            searchResult={company}
+          />
+        )): <h1 className="text-red-700 ">No results found</h1> }
     </div>
   )
 }

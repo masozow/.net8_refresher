@@ -7,33 +7,30 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import type { CompanySearch } from "@/API/company";
 
 interface Props  {
-  companyName: string;
-  price: number;
-  companySymbol: string;
+  id: string;
+  searchResult: CompanySearch;
 };
 
-const MyCard: React.FC<Props> = ({companyName, price, companySymbol}: Props): JSX.Element => {
+const MyCard: React.FC<Props> = ({id,searchResult}: Props): JSX.Element => {
   return (
     <div>
-      <Card className="w-[20rem] h-[auto] my-2">
+      <Card id={id} className="w-[20rem] h-[auto] my-2">
         <CardHeader>
           <CardDescription className="flex justify-center align-middle">
             <Avatar className="w-40 h-40">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>{companySymbol}</AvatarFallback>
+              <AvatarImage src="https://github.com/shadcn.png" alt={"Logo for "+searchResult.name} />
+              <AvatarFallback>{searchResult.name}</AvatarFallback>
             </Avatar>
           </CardDescription>
-          <CardTitle>{companyName} ({companySymbol})</CardTitle>
+          <CardTitle className="flex justify-center">{searchResult.name} ({searchResult.symbol})</CardTitle>
         </CardHeader>
-        <CardContent>
-          <p>${price}</p>
+        <CardContent className="flex justify-center">
+          <p>({searchResult.currency}) &nbsp;</p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Consectetur debitis, unde tempora soluta voluptates at nesciunt
-            obcaecati eligendi aut accusamus, aspernatur ipsam, officiis
-            repudiandae inventore minus alias dignissimos temporibus maxime!
+            {searchResult.exchange} - {searchResult.exchangeFullName}
           </p>
         </CardContent>
         {/* <CardFooter>

@@ -7,12 +7,12 @@ import type { CompanySearch } from "@/API/company"
 import { searchCompanies } from "@/API/api"
 
 
-// interface SearchFormProps extends React.ComponentProps<"form"> {
-
-// }
-export const SearchForm:React.FC<React.ComponentProps<"form"> > = ({ ...props }: React.ComponentProps<"form"> ):JSX.Element =>{
+interface SearchFormProps extends React.ComponentProps<"form"> {
+  searchResult: CompanySearch[]
+  setSearchResult: (value: CompanySearch[]) => void
+}
+export const SearchForm: React.FC<SearchFormProps> = ({ ...props }: SearchFormProps): JSX.Element => {
   const [search, setSearch] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string>("");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,9 +24,9 @@ export const SearchForm:React.FC<React.ComponentProps<"form"> > = ({ ...props }:
       if(typeof result ==="string"){
         setServerError(result);
       }else if(Array.isArray(result.data)){
-        setSearchResult(result.data);
+        props.setSearchResult(result.data);
       }
-      console.log(searchResult);
+      console.log(props.searchResult);
       console.log("Error: ", serverError);
     }
   return (
