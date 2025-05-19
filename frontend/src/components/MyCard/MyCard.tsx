@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX, SyntheticEvent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   Card,
@@ -11,15 +11,15 @@ import {
 import type { CompanySearch } from "@/API/company";
 import { Badge } from "../ui/badge";
 import AddPortfolio from "../Portfolio/AddPortfolio";
-import { Divide } from "lucide-react";
 import { Separator } from "../ui/separator";
 
 interface Props  {
   id: string;
   searchResult: CompanySearch;
+  onPortfolioCreate: (e:SyntheticEvent) => void
 };
 
-const MyCard: React.FC<Props> = ({id,searchResult}: Props): JSX.Element => {
+const MyCard: React.FC<Props> = ({id,searchResult,onPortfolioCreate}: Props): JSX.Element => {
   return (
     <div>
       <Card id={id} className="w-[20rem] h-[auto] my-2">
@@ -40,7 +40,7 @@ const MyCard: React.FC<Props> = ({id,searchResult}: Props): JSX.Element => {
         </CardContent>
         <Separator className="my-1" />
         <CardFooter className="flex justify-end">
-          <AddPortfolio />
+          <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol}/>
         </CardFooter>
       </Card>
     </div>
