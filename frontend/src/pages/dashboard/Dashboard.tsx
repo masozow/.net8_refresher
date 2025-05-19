@@ -1,15 +1,19 @@
 import type { CompanySearch } from "@/API/company";
 import { AppSidebar } from "@/components/app-sidebar"
 import MyCardList from "@/components/MyCardList/MyCardList"
+import ListPortfolio from "@/components/Portfolio/ListPortfolio";
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { useState, type SyntheticEvent } from "react";
+import { useState } from "react";
 
 export default function Page() {
     const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
-    const onPortfolioCreate = (e:SyntheticEvent) => {
+    const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
+    const onPortfolioCreate = (e:any) => {
       e.preventDefault();
-      console.log('Event: ',e);
+      const updatedPortfolio=[...portfolioValues,e.target[0].value];
+      setPortfolioValues(updatedPortfolio);
+      // console.log('Event: ',e);
     }
   return (
     <div className="[--header-height:calc(theme(spacing.14))]">
@@ -19,6 +23,7 @@ export default function Page() {
             <div className="flex flex-1">
               <AppSidebar />
               <SidebarInset className="flex flex-wrap items-center justify-center py-2">
+                <ListPortfolio portfolioValues={portfolioValues} />
                 <MyCardList className="flex flex-col gap-1 md:flex-row md:gap-4" searchResult={searchResult} onPortfolioCreate={onPortfolioCreate}/>
               </SidebarInset>
             </div>
