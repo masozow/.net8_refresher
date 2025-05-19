@@ -4,10 +4,15 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "../ui/card";
 import type { CompanySearch } from "@/API/company";
+import { Badge } from "../ui/badge";
+import AddPortfolio from "../Portfolio/AddPortfolio";
+import { Divide } from "lucide-react";
+import { Separator } from "../ui/separator";
 
 interface Props  {
   id: string;
@@ -25,17 +30,18 @@ const MyCard: React.FC<Props> = ({id,searchResult}: Props): JSX.Element => {
               <AvatarFallback>{searchResult.name}</AvatarFallback>
             </Avatar>
           </CardDescription>
-          <CardTitle className="flex justify-center">{searchResult.name} ({searchResult.symbol})</CardTitle>
+          <CardTitle className="text-center">{searchResult.name} ({searchResult.symbol})</CardTitle>
         </CardHeader>
-        <CardContent className="flex justify-center">
-          <p>({searchResult.currency}) &nbsp;</p>
+        <CardContent className="flex justify-center items-center align-middle">
+          <Badge variant={"outline"} className="mr-2 text-1xl" >{searchResult.currency} </Badge>
           <p>
             {searchResult.exchange} - {searchResult.exchangeFullName}
           </p>
         </CardContent>
-        {/* <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter> */}
+        <Separator className="my-1" />
+        <CardFooter className="flex justify-end">
+          <AddPortfolio />
+        </CardFooter>
       </Card>
     </div>
   );
