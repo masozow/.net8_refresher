@@ -1,12 +1,12 @@
 import "./App.css";
-import MyCard from "./components/MyCard/MyCard";
 import { ThemeProvider } from "./components/theme-provider";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
   return (
     <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <MyCard />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" >
+        <Dashboard />
       </ThemeProvider>
     </>
   );

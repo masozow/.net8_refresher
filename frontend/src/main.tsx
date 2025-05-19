@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+// import { searchCompanies } from './API/api.tsx'
+// console.log(searchCompanies('apple'));
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
