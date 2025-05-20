@@ -7,19 +7,21 @@
 //   TableHeader,
 //   TableRow,
 // } from "@/components/ui/table"
+import type { SyntheticEvent } from "react";
 import CardPortfolio from "./CardPortfolio";
 
 interface Props{
     portfolioValues: string[];
+    onPortfolioDelete: (e:SyntheticEvent) => void ;
 }
 
-export default function ListPortfolio({portfolioValues}: Props) {
+export default function ListPortfolio({portfolioValues,onPortfolioDelete}: Props) {
   return (
     <>
       <h3>My Portfolio</h3>
       <ul className="flex flex-wrap gap-2 my-1">
         {portfolioValues && portfolioValues.map((value) => (
-          <li key={value}><CardPortfolio portfolioValue={value} /></li>
+          <li key={value}><CardPortfolio portfolioValue={value} onPortfolioDelete={onPortfolioDelete}/></li>
         ))}
       </ul>
     </>

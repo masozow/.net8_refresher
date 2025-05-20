@@ -4,16 +4,26 @@ import MyCardList from "@/components/MyCardList/MyCardList"
 import ListPortfolio from "@/components/Portfolio/ListPortfolio";
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 
 export default function Page() {
     const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
     const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
-    const onPortfolioCreate = (e:any) => {
+    const onPortfolioCreate = (e: React.SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const exists = portfolioValues.includes(e.target[0].value);
-      if(exists) return;
-      const updatedPortfolio=[...portfolioValues,e.target[0].value];
+      const form = e.currentTarget;
+      const value = (form.elements[0] as HTMLInputElement).value;
+      const exists = portfolioValues.includes(value);
+      if (exists) return;
+      const updatedPortfolio = [...portfolioValues, value];
+      setPortfolioValues(updatedPortfolio);
+    }
+
+    const onPortfolioDelete = (e: SyntheticEvent) => {
+      e.preventDefault();
+      const form = e.target as HTMLFormElement;
+      const input = form.elements[0] as HTMLInputElement;
+      const updatedPortfolio = portfolioValues.filter((value) => value !== input.value);
       setPortfolioValues(updatedPortfolio);
       // console.log('Event: ',e);
     }
@@ -25,7 +35,7 @@ export default function Page() {
             <div className="flex flex-1">
               <AppSidebar />
               <SidebarInset className="flex flex-wrap items-center justify-center py-2">
-                <ListPortfolio portfolioValues={portfolioValues} />
+                <ListPortfolio portfolioValues={portfolioValues} onPortfolioDelete={onPortfolioDelete}/>
                 <MyCardList className="flex flex-col gap-1 md:flex-row md:gap-4" searchResult={searchResult} onPortfolioCreate={onPortfolioCreate}/>
               </SidebarInset>
             </div>
