@@ -11,7 +11,7 @@ import {
 import type { CompanySearch } from "@/API/company";
 import { Badge } from "../ui/badge";
 import AddPortfolio from "../Portfolio/AddPortfolio";
-import { Separator } from "../ui/separator";
+import { Link } from "react-router-dom";
 
 interface Props  {
   id: string;
@@ -30,7 +30,7 @@ const MyCard: React.FC<Props> = ({id,searchResult,onPortfolioCreate}: Props): JS
               <AvatarFallback>{searchResult.name}</AvatarFallback>
             </Avatar>
           </CardDescription>
-          <CardTitle className="text-center">{searchResult.name} ({searchResult.symbol})</CardTitle>
+          <CardTitle className="text-center"><Link to={`/company/${searchResult.symbol}`}>{searchResult.name} ({searchResult.symbol})</Link></CardTitle>
         </CardHeader>
         <CardContent className="flex justify-center items-center align-middle">
           <Badge variant={"outline"} className="mr-2 text-1xl" >{searchResult.currency} </Badge>
@@ -38,7 +38,7 @@ const MyCard: React.FC<Props> = ({id,searchResult,onPortfolioCreate}: Props): JS
             {searchResult.exchange} - {searchResult.exchangeFullName}
           </p>
         </CardContent>
-        <Separator className="my-1" />
+        
         <CardFooter className="flex justify-end">
           <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={searchResult.symbol}/>
         </CardFooter>
