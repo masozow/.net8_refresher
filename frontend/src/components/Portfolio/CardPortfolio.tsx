@@ -10,9 +10,9 @@ interface Props {
 
 const CardPortfolio = ({ portfolioValue, onPortfolioDelete }: Props) => {
   return (
-    <Card className='w-full'>
-      <CardHeader className="flex justify-between">
-        <CardTitle className="flex text-center">
+    <Card className="w-[20rem] h-[auto] my-2">
+      <CardHeader className="flex justify-center">
+        <CardTitle>
           <Link to={`/company/${portfolioValue}`}>{portfolioValue}</Link>
         </CardTitle>
       </CardHeader>
