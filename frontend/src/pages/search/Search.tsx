@@ -30,8 +30,8 @@ const SearchPage = () => {
       // console.log('Event: ',e);
     }
   return (
-    <section className="flex flex-1 flex-col justify-begin items-center">
-        <SearchForm searchResult={searchResult} setSearchResult={setSearchResult} className="w-full sm:ml-auto sm:w-auto" />
+    <section className="flex flex-1 flex-col justify-begin items-center w-full">
+        <SearchForm searchResult={searchResult} setSearchResult={setSearchResult} className="w-full px-5 my-5 sm:ml-auto sm:w-full sm:px-40 sm:my-10" />
         <ListPortfolio portfolioValues={portfolioValues} onPortfolioDelete={onPortfolioDelete}/>
         <MyCardList className="flex flex-col gap-1 md:flex-row md:gap-4" searchResult={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </section>
