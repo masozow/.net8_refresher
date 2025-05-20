@@ -1,13 +1,13 @@
 import { getCompanyProfile } from "@/API/api";
 import type { CompanyProfile } from "@/API/company";
+import Tile from "@/components/Tile/Tile";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router"
+import { Outlet, useParams } from "react-router"
+import { NavLink } from "react-router-dom";
 
-interface Props  {
-    
-}
 
-const Company = (props: Props) => {
+
+const Company = () => {
   const {ticker} = useParams();
   const [company, setCompany] = useState<CompanyProfile>();
   useEffect(() => {
@@ -26,18 +26,22 @@ const Company = (props: Props) => {
   },[ticker]);
 
   return (
-    <>
-    {
-    company ?
-    ( 
-      <div>
-        <h1>{company.companyName}</h1>
-      </div>
-    ):
-      <h1>Company not found</h1>
-
-    }
-    </>
+    <div className="w-full px-10">
+      {
+      company ?
+      ( 
+        <div>
+          <Tile title={company.companyName} subtitle={company.symbol}/>
+          <div className="flex w-full bg-gray-200 rounded">
+            <NavLink className={({isActive}) => `p-2 ${isActive ? "bg-gray-400" : ""}`} to={`company-profile`}>Profile</NavLink>
+            <NavLink className={({isActive}) => `p-2 ${isActive ? "bg-gray-400" : ""}`} to={`income-statement`}>Income statement</NavLink>
+          </div>
+          <Outlet/>
+        </div>
+      ):
+        <h1>Company not found</h1>
+      }
+    </div>
   )
 }
 

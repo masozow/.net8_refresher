@@ -1,4 +1,6 @@
 import App from "@/App";
+import CompanyProfile from "@/components/CompanyProfile/CompanyProfile";
+import IncomeStatement from "@/components/IncomeStatement/IncomeStatement";
 import Company from "@/pages/company/Company";
 import Page from "@/pages/dashboard/Dashboard";
 import HomePage from "@/pages/home/HomePage";
@@ -13,7 +15,12 @@ export const router = createBrowserRouter([
             { path:"", element:<HomePage/>},
             { path:"search",element:<SearchPage/>},
             { path:"dashboard", element:<Page/>},
-            { path:"company/:ticker",element:<Company/>}
+            { path:"company/:ticker",element:<Company/>,
+                children: [
+                    { path:"company-profile",element:<CompanyProfile/>},
+                    { path:"income-statement", element:<IncomeStatement/>},
+                ]
+            }
         ]
     }
 ]);

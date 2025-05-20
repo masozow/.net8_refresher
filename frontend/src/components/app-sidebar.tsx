@@ -1,9 +1,10 @@
 import {
   ChartAreaIcon,
   SquareTerminal,
+  Search
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
+// import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -17,6 +18,7 @@ import {
 
 import type { ComponentProps } from "react"
 import { NavLink } from "react-router-dom"
+import { NavProjects } from "./nav-projects"
 
 const data = {
   user: {
@@ -24,20 +26,31 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  navMain: [
+  companyOptions: [
     {
-      title: "Options",
+      title: "Company",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "Search",
-          url: "/search",
+          title: "Company profile",
+          url: "company-profile",
+        },
+        {
+          title: "Income statement",
+          url: "income-statement",
         },
       ],
     },
-  ]
+  ],
+  options: [
+    {
+      name: "Search",
+      url: "/search",
+      icon: Search,
+    }
+  ],
 }
 
 // const data = {
@@ -184,8 +197,9 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+        <NavProjects projects={data.options} />
+        {/* <NavMain items={data.companyOptions} /> */}
+        
         {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
