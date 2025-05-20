@@ -6,7 +6,7 @@ import {v4 as uuidv4} from 'uuid'
 interface Props  {
     className?: string,
     searchResult?: CompanySearch[],
-    onPortfolioCreate: (e:SyntheticEvent) => void  
+    onPortfolioCreate: (e:SyntheticEvent<HTMLFormElement>) => void  
 }
 
 const MyCardList: React.FC<Props> = ({className,searchResult,onPortfolioCreate}: Props): JSX.Element => {

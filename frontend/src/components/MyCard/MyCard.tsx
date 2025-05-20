@@ -16,7 +16,7 @@ import { Separator } from "../ui/separator";
 interface Props  {
   id: string;
   searchResult: CompanySearch;
-  onPortfolioCreate: (e:SyntheticEvent) => void
+  onPortfolioCreate: (e:SyntheticEvent<HTMLFormElement>) => void
 };
 
 const MyCard: React.FC<Props> = ({id,searchResult,onPortfolioCreate}: Props): JSX.Element => {

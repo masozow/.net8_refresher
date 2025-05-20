@@ -9,9 +9,9 @@ interface Props  {
 
 const DeletePortfolio = ({onPortfolioDelete,portfolioValue}: Props) => {
   return (
-    <form onSubmit={onPortfolioDelete}>
+    <form onSubmit={onPortfolioDelete} className='w-full'>
         <input hidden={true} value={portfolioValue} readOnly={true} />
-        <Button><X/></Button>
+        <Button className='w-full' variant="destructive"><X className='w-4 h-4 text-red-600'/></Button>
     </form>
   )
 }

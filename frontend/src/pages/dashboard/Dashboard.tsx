@@ -1,5 +1,6 @@
 import type { CompanySearch } from "@/API/company";
 import { AppSidebar } from "@/components/app-sidebar"
+import Hero from "@/components/Hero/Hero";
 import MyCardList from "@/components/MyCardList/MyCardList"
 import ListPortfolio from "@/components/Portfolio/ListPortfolio";
 import { SiteHeader } from "@/components/site-header"
@@ -35,6 +36,7 @@ export default function Page() {
             <div className="flex flex-1">
               <AppSidebar />
               <SidebarInset className="flex flex-wrap items-center justify-center py-2">
+                <Hero />
                 <ListPortfolio portfolioValues={portfolioValues} onPortfolioDelete={onPortfolioDelete}/>
                 <MyCardList className="flex flex-col gap-1 md:flex-row md:gap-4" searchResult={searchResult} onPortfolioCreate={onPortfolioCreate}/>
               </SidebarInset>
@@ -43,3 +45,4 @@ export default function Page() {
     </div>
   )
 }
+

@@ -2,7 +2,7 @@ import type { SyntheticEvent } from "react"
 import { Button } from "../ui/button"
 
 interface Props  {
-    onPortfolioCreate: (e:SyntheticEvent) => void,
+    onPortfolioCreate: (e:SyntheticEvent<HTMLFormElement>) => void,
     symbol: string
 }
 
