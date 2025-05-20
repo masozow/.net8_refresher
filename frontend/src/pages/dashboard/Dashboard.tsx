@@ -11,6 +11,8 @@ export default function Page() {
     const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
     const onPortfolioCreate = (e:any) => {
       e.preventDefault();
+      const exists = portfolioValues.includes(e.target[0].value);
+      if(exists) return;
       const updatedPortfolio=[...portfolioValues,e.target[0].value];
       setPortfolioValues(updatedPortfolio);
       // console.log('Event: ',e);
