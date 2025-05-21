@@ -1,4 +1,5 @@
 import MyTable from "@/components/MyTable/MyTable";
+import { testIncomeStatementData } from "@/components/MyTable/testData";
 import RatioList from "@/components/RatioList/RatioList";
 
 interface Props {}
@@ -18,7 +19,7 @@ const DesignPage = (props: Props) => {
         various design aspects of the app
       </h2>
       <RatioList data={"sometnihg"} config={tableConfig} />
-      <MyTable />
+      <MyTable data={testIncomeStatementData} config={tableConfig} />
     </div>
   );
 };

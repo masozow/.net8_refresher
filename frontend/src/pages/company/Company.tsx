@@ -45,7 +45,7 @@ const Company = () => {
                 <NavLink to="income-statement">Income statement</NavLink>
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="company-profile" defaultChecked>
+            <TabsContent value="company-profile" defaultChecked forceMount>
               <Outlet context={{ ticker } as ContextType} />
             </TabsContent>
             <TabsContent value="income-statement">
