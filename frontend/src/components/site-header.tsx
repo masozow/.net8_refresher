@@ -1,6 +1,5 @@
 import { SidebarIcon } from "lucide-react"
 
-import { SearchForm } from "@/components/search-form"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,13 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { useSidebar } from "@/components/ui/sidebar"
 import { ModeToggle } from "./mode-toggle"
-import type { CompanySearch } from "@/API/company"
 
-interface SiteHeaderProps extends React.ComponentProps<"header"> {
-  searchResult: CompanySearch[];
-  setSearchResult: (value: CompanySearch[]) => void
-}
-export function SiteHeader({searchResult, setSearchResult}: SiteHeaderProps) {
+export function SiteHeader(props: React.ComponentProps<"header">) {
   const { toggleSidebar } = useSidebar()
 
   return (
@@ -47,8 +41,7 @@ export function SiteHeader({searchResult, setSearchResult}: SiteHeaderProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        
-        <SearchForm searchResult={searchResult} setSearchResult={setSearchResult} className="w-full sm:ml-auto sm:w-auto" />
+        <div className="flex-1" />
         <ModeToggle />
       </div>
     </header>
