@@ -28,7 +28,28 @@ const Company = () => {
     <div className="w-full px-10">
       {company ? (
         <div>
-          <Tile title={company.companyName} subtitle={company.symbol} />
+          <div className="flex flex-wrap">
+            <Tile
+              title={company.companyName}
+              subtitle={company.symbol}
+              className="w-1/2"
+            />
+            <Tile
+              title={company.companyName}
+              subtitle={company.symbol}
+              className="w-1/2"
+            />
+            <Tile
+              title={company.companyName}
+              subtitle={company.symbol}
+              className="w-1/2"
+            />
+            <Tile
+              title={company.companyName}
+              subtitle={company.symbol}
+              className="w-1/2"
+            />
+          </div>
           <Tabs defaultValue="profile" className="w-[400px]">
             <TabsList>
               <TabsTrigger value="company-profile">
