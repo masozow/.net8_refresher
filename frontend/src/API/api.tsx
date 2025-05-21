@@ -1,12 +1,13 @@
 import axios, { isAxiosError } from "axios";
 import {
+  type CompanyBalanceSheet,
   type CompanyIncomeStatement,
   type CompanyKeyMetrics,
   type CompanyProfile,
   type CompanySearch,
 } from "./company";
 
-export const searchCompanies = async (query: string) => {
+export const searchCompanies = async (query: string | null) => {
   try {
     const data = await axios.get<CompanySearch[]>(
       `https://financialmodelingprep.com/stable/search-name?query=${query}&apikey=${
@@ -25,7 +26,7 @@ export const searchCompanies = async (query: string) => {
   }
 };
 
-export const getCompanyProfile = async (query: string) => {
+export const getCompanyProfile = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyProfile>(
       `https://financialmodelingprep.com/stable/profile?symbol=${query}&apikey=${
@@ -44,7 +45,7 @@ export const getCompanyProfile = async (query: string) => {
   }
 };
 
-export const getKeyMetrics = async (query: string) => {
+export const getKeyMetrics = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyKeyMetrics[]>(
       `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?apikey=${
@@ -63,10 +64,29 @@ export const getKeyMetrics = async (query: string) => {
   }
 };
 
-export const getIncomeStatement = async (query: string) => {
+export const getIncomeStatement = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyIncomeStatement[]>(
-      `https://financialmodelingprep.com/api/v3/income-statement/${query}?apikey=${
+      `https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=40&apikey=${
+        import.meta.env.VITE_REACT_APP_API_KEY
+      }`
+    );
+    return data?.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log("error message: ", error.message);
+      return error.message;
+    } else {
+      console.log("Unexpected error", error);
+      return "An unexpected error has ocurred.";
+    }
+  }
+};
+
+export const getBalanceSheet = async (query: string | null) => {
+  try {
+    const data = await axios.get<CompanyBalanceSheet[]>(
+      `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${query}?limit=40&apikey=${
         import.meta.env.VITE_REACT_APP_API_KEY
       }`
     );

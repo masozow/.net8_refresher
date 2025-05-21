@@ -1,7 +1,7 @@
 import { getKeyMetrics } from "@/API/api";
 import type { CompanyKeyMetrics } from "@/API/company";
 import { useTicker } from "@/pages/company/Company";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import RatioList from "../RatioList/RatioList";
 
 const tableConfig = [
@@ -64,7 +64,7 @@ const tableConfig = [
       "This is the upperbouind of the price range that a defensive investor should pay for a stock",
   },
 ];
-const CompanyProfile = () => {
+const CompanyProfile = memo(() => {
   const ticker = useTicker();
   const [companyData, setCompanyData] = useState<CompanyKeyMetrics>();
   useEffect(() => {
@@ -78,7 +78,6 @@ const CompanyProfile = () => {
     };
     getCompanyKeyMetrics();
   }, [ticker.ticker]);
-
   return (
     <>
       {companyData ? (
@@ -90,6 +89,6 @@ const CompanyProfile = () => {
       )}
     </>
   );
-};
+});
 
 export default CompanyProfile;

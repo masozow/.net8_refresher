@@ -1,6 +1,6 @@
 import type { CompanyIncomeStatement } from "@/API/company";
 import { useTicker } from "@/pages/company/Company";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import MyTable from "../MyTable/MyTable";
 import { getIncomeStatement } from "@/API/api";
 
@@ -59,7 +59,7 @@ const configs = [
     render: (company: CompanyIncomeStatement) => company.incomeBeforeTaxRatio,
   },
 ];
-const IncomeStatement = () => {
+const IncomeStatement = memo(() => {
   const ticker = useTicker();
   const [incomeStatement, setIncomeStatement] =
     useState<CompanyIncomeStatement[]>();
@@ -87,6 +87,6 @@ const IncomeStatement = () => {
       )}
     </>
   );
-};
+});
 
 export default IncomeStatement;

@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { Outlet, useOutletContext, useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 
-type ContextType = { ticker: string };
+type ContextType = { ticker: string | null };
 
 const Company = () => {
-  const { ticker } = useParams();
+  const { ticker = null } = useParams() as { ticker: string | null };
   const [company, setCompany] = useState<CompanyProfile>();
   useEffect(() => {
     const getCompany = async () => {
@@ -44,12 +44,18 @@ const Company = () => {
               <TabsTrigger value="income-statement">
                 <NavLink to="income-statement">Income statement</NavLink>
               </TabsTrigger>
+              <TabsTrigger value="balance-sheet">
+                <NavLink to="balance-sheet">Balance sheet</NavLink>
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="company-profile" defaultChecked forceMount>
-              <Outlet context={{ ticker } as ContextType} />
+              <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
             <TabsContent value="income-statement">
-              <Outlet context={{ ticker } as ContextType} />
+              <Outlet context={{ ticker } satisfies ContextType} />
+            </TabsContent>
+            <TabsContent value="balance-sheet">
+              <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
           </Tabs>
         </div>

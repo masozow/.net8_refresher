@@ -3,7 +3,7 @@ import Tile from "../Tile/Tile";
 interface Props {
   config: {
     label: string;
-    subTitle: string;
+    subTitle?: string | null;
     render: (data: any) => React.ReactNode;
   }[];
   data: any;
@@ -14,7 +14,7 @@ const RatioList = ({ config, data }: Props) => {
     <Tile
       key={config.label}
       title={config.label}
-      subtitle={config.subTitle}
+      subtitle={config.subTitle === null ? "" : config.subTitle}
       specificData={config.render(data)}
       className="w-full my-0"
     />

@@ -1,4 +1,5 @@
 import App from "@/App";
+import BalanceSheet from "@/components/BalanceSheet/BalanceSheet";
 import CompanyProfile from "@/components/CompanyProfile/CompanyProfile";
 import IncomeStatement from "@/components/IncomeStatement/IncomeStatement";
 import Company from "@/pages/company/Company";
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "company-profile", element: <CompanyProfile /> },
           { path: "income-statement", element: <IncomeStatement /> },
+          { path: "balance-sheet", element: <BalanceSheet /> },
         ],
       },
     ],
