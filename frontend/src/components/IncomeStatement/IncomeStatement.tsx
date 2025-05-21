@@ -1,10 +1,8 @@
+import { useTicker } from "@/pages/company/Company";
 
-type Props = {}
+const IncomeStatement = () => {
+  const ticker = useTicker();
+  return <div>IncomeStatement: {ticker.ticker}</div>;
+};
 
-const IncomeStatement = (props: Props) => {
-  return (
-    <div>IncomeStatement</div>
-  )
-}
-
-export default IncomeStatement
+export default IncomeStatement;

@@ -5,14 +5,12 @@ interface Props {
   title: string;
   subtitle: string;
   className?: string;
-  key?: string;
-  data?: React.ReactNode;
+  specificData?: React.ReactNode;
 }
 
-const Tile = ({ title, key, subtitle, className, data }: Props) => {
+const Tile = ({ title, subtitle, className, specificData: data }: Props) => {
   return (
     <Card
-      key={key}
       className={cn(`w-[20rem] h-[auto] my-2 border-0 shadow-xl`, className)}
     >
       <CardHeader>
