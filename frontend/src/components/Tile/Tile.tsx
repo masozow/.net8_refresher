@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 interface Props {
-  title: string;
+  title?: string | null;
   subtitle?: string | null;
   className?: string;
   specificData?: React.ReactNode;
@@ -15,9 +15,7 @@ const Tile = ({
   specificData: data,
 }: Props) => {
   return (
-    <Card
-      className={cn(`w-[20rem] h-[auto] my-2 border-0 shadow-xl`, className)}
-    >
+    <Card className={cn(`w-full h-[auto] my-2 border-0 shadow-xl`, className)}>
       <CardHeader>
         <CardTitle>
           <div className="flex justify-between">

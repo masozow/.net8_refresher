@@ -33,15 +33,37 @@ const Company = () => {
             <Tile
               title={company.companyName}
               subtitle={company.symbol}
-              className="w-1/3"
+              className="sm:w-1/2 md:w-1/4"
+            />
+            <Tile
+              title="Price"
+              subtitle={company.price.toString()}
+              className="sm:w-1/2 md:w-1/4"
+            />
+            <Tile
+              title="Sector"
+              subtitle={company.sector}
+              className="sm:w-1/2 md:w-1/4"
+            />
+            <Tile
+              title="Capitalization"
+              subtitle={company.marketCap.toString()}
+              className="sm:w-1/2 md:w-1/4"
+            />
+            <Tile
+              subtitle={company.description}
+              className="w-full max-h-[10rem] overflow-auto y-scroll"
             />
           </div>
-          <Tabs defaultValue="profile" className="w-full bg-gray-50">
+          <Tabs
+            defaultValue="profile"
+            className="w-full bg-gray-50 rounded overflow-x-scroll"
+          >
             <TabsList>
-              <TabsTrigger value="company-profile rounded" defaultChecked>
+              <TabsTrigger value="company-profile" defaultChecked>
                 <NavLink to="company-profile">Company Profile</NavLink>
               </TabsTrigger>
-              <TabsTrigger value="income-statement">
+              <TabsTrigger value="income-statement" defaultChecked>
                 <NavLink to="income-statement">Income statement</NavLink>
               </TabsTrigger>
               <TabsTrigger value="balance-sheet">
