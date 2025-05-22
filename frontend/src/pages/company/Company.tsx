@@ -47,6 +47,9 @@ const Company = () => {
               <TabsTrigger value="balance-sheet">
                 <NavLink to="balance-sheet">Balance sheet</NavLink>
               </TabsTrigger>
+              <TabsTrigger value="cashflow-statement">
+                <NavLink to="cashflow-statement">Cashflow statement</NavLink>
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="company-profile" defaultChecked forceMount>
               <Outlet context={{ ticker } satisfies ContextType} />
@@ -55,6 +58,9 @@ const Company = () => {
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
             <TabsContent value="balance-sheet">
+              <Outlet context={{ ticker } satisfies ContextType} />
+            </TabsContent>
+            <TabsContent value="cashflow-statement">
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
           </Tabs>
