@@ -2,6 +2,7 @@ import axios, { isAxiosError } from "axios";
 import {
   type CompanyBalanceSheet,
   type CompanyCashFlow,
+  type CompanyComparableData,
   type CompanyIncomeStatement,
   type CompanyKeyMetrics,
   type CompanyProfile,
@@ -107,6 +108,25 @@ export const getCashFlowStatement = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyCashFlow[]>(
       `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=40&apikey=${
+        import.meta.env.VITE_REACT_APP_API_KEY
+      }`
+    );
+    return data?.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log("error message: ", error.message);
+      return error.message;
+    } else {
+      console.log("Unexpected error", error);
+      return "An unexpected error has ocurred.";
+    }
+  }
+};
+
+export const getComparableData = async (query: string | null) => {
+  try {
+    const data = await axios.get<CompanyComparableData[]>(
+      `https://financialmodelingprep.com/stable/stock-peers?symbol${query}&apikey=${
         import.meta.env.VITE_REACT_APP_API_KEY
       }`
     );

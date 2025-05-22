@@ -307,3 +307,10 @@ export interface CompanyCashFlow {
   link: string;
   finalLink: string;
 }
+
+export interface CompanyComparableData{
+  symbol: string
+  companyName: string
+  price: number
+  mktCap: number
+}
