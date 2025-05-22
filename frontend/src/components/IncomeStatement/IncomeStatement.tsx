@@ -3,6 +3,7 @@ import { useTicker } from "@/pages/company/Company";
 import { memo, useEffect, useState } from "react";
 import MyTable from "../MyTable/MyTable";
 import { getIncomeStatement } from "@/API/api";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 const configs = [
   {
@@ -83,7 +84,7 @@ const IncomeStatement = memo(() => {
           <MyTable data={incomeStatement} config={configs} />
         </>
       ) : (
-        <>Loading...</>
+        <LoadingSpinner />
       )}
     </>
   );

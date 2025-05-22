@@ -3,6 +3,7 @@ import type { CompanyKeyMetrics } from "@/API/company";
 import { useTicker } from "@/pages/company/Company";
 import { memo, useEffect, useState } from "react";
 import RatioList from "../RatioList/RatioList";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 const tableConfig = [
   {
@@ -85,7 +86,7 @@ const CompanyProfile = memo(() => {
           <RatioList config={tableConfig} data={companyData} />
         </>
       ) : (
-        <>Loading...</>
+        <LoadingSpinner />
       )}
     </>
   );

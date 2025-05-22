@@ -3,6 +3,7 @@ import type { CompanyBalanceSheet } from "@/API/company";
 import { useTicker } from "@/pages/company/Company";
 import { memo, useEffect, useState } from "react";
 import RatioList from "../RatioList/RatioList";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 const configs = [
   {
@@ -77,7 +78,7 @@ const BalanceSheet = memo(() => {
       {balanceSheet ? (
         <RatioList data={balanceSheet} config={configs} />
       ) : (
-        <div>Loading...</div>
+        <LoadingSpinner />
       )}
     </>
   );

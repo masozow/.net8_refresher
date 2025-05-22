@@ -3,6 +3,7 @@ import type { CompanyCashFlow } from "@/API/company";
 import { useTicker } from "@/pages/company/Company";
 import { useEffect, useState } from "react";
 import MyTable from "../MyTable/MyTable";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 const config = [
   {
@@ -58,7 +59,7 @@ const CashFlowStatement = () => {
       {cashflowData ? (
         <MyTable data={cashflowData} config={config} />
       ) : (
-        <div>Loading...</div>
+        <LoadingSpinner />
       )}
     </>
   );
