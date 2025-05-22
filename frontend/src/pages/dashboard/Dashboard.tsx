@@ -10,7 +10,7 @@ export default function Page() {
         <SiteHeader />
         <div className="flex flex-1 items-start">
           <AppSidebar />
-          <SidebarInset className="flex flex-col flex-wrap  justify-center py-2">
+          <SidebarInset className="flex flex-col flex-wrap  justify-center py-2 overflow-x-auto">
             <Outlet />
           </SidebarInset>
         </div>

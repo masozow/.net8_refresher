@@ -2,27 +2,32 @@ import { cn } from "@/lib/utils";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 interface Props {
-  title: string;
-  subtitle: string;
+  title?: string | null;
+  subtitle?: string | null;
   className?: string;
-  key?: string;
-  data?: React.ReactNode;
+  specificData?: React.ReactNode;
 }
 
-const Tile = ({ title, key, subtitle, className, data }: Props) => {
+const Tile = ({
+  title,
+  subtitle = null,
+  className,
+  specificData: data,
+}: Props) => {
   return (
-    <Card
-      key={key}
-      className={cn(`w-[20rem] h-[auto] my-2 border-0 shadow-xl`, className)}
-    >
+    <Card className={cn(`w-full h-[auto] my-2 border-0 shadow-xl`, className)}>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>
+        <CardTitle>
           <div className="flex justify-between">
-            <span>{subtitle}</span>
+            <span>{title}</span>
             <span className="font-bold">{data}</span>
           </div>
-        </CardDescription>
+        </CardTitle>
+        {subtitle && (
+          <CardDescription>
+            <span>{subtitle === null ? "" : subtitle}</span>
+          </CardDescription>
+        )}
       </CardHeader>
     </Card>
   );

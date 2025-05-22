@@ -1,34 +1,25 @@
-import { TestDataCompany } from "../MyTable/testData";
 import Tile from "../Tile/Tile";
 
-interface Props {}
+interface Props {
+  config: {
+    label: string;
+    subTitle?: string | null;
+    render: (data: any) => React.ReactNode;
+  }[];
+  data: any;
+}
 
-const data = TestDataCompany[0];
-type Company = typeof data;
-const config = [
-  {
-    label: "Company Name",
-    render: (company: Company) => company.companyName,
-    subTitle: "This is the company name",
-  },
-  {
-    label: "Company Name",
-    render: (company: Company) => company.companyName,
-    subTitle: "This is the company name",
-  },
-];
-
-const RatioList = (props: Props) => {
+const RatioList = ({ config, data }: Props) => {
   const renderedRow = config.map((config) => (
     <Tile
       key={config.label}
       title={config.label}
-      subtitle={config.subTitle}
-      data={config.render(data)}
-      className="w-full"
+      subtitle={config.subTitle === null ? "" : config.subTitle}
+      specificData={config.render(data)}
+      className="w-full my-0"
     />
   ));
-  return <ul className="flex flex-col">{renderedRow}</ul>;
+  return <div className="flex flex-col w-full gap-0">{renderedRow}</div>;
 };
 
 export default RatioList;
