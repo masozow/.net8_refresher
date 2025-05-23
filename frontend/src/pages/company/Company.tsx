@@ -61,7 +61,7 @@ const Company = () => {
           </div>
           <Tabs
             defaultValue="profile"
-            className="w-full bg-gray-50 rounded overflow-x-scroll"
+            className="w-full bg-gray-50 rounded-xl overflow-x-scroll mt-2"
           >
             <TabsList>
               <TabsTrigger value="company-profile" defaultChecked>

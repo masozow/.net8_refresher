@@ -12,11 +12,12 @@ const TenKFinderItem = ({ tenK }: Props) => {
       reloadDocument
       to={tenK.finalLink}
       type="button"
-      className="inline-flex items-center p-4
+      className="inline-flex items-center p-2
       ml-2
       text-white
       bg-green-600
-      rounded-xl"
+      rounded-xl
+      text-sm"
     >
       10K - {tenK.symbol} - {filingDate}
     </Link>
