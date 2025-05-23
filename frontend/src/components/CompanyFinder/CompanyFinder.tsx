@@ -15,7 +15,7 @@ const CompanyFinder = memo(({ ticker }: Props) => {
       if (Array.isArray(result) && result.length > 0) {
         setCompanyData(result);
       } else if (typeof result === "string") {
-        console.error("Error fetching balance sheet:", result);
+        console.error("Error fetching comprable data:", result);
       }
     };
     if (ticker) {

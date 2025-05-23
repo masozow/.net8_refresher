@@ -1,6 +1,7 @@
 import { getCompanyProfile } from "@/API/api";
 import type { CompanyProfile } from "@/API/company";
 import CompanyFinder from "@/components/CompanyFinder/CompanyFinder";
+import TenKFinder from "@/components/TenKFinder/TenKFinder";
 import Tile from "@/components/Tile/Tile";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
@@ -56,6 +57,7 @@ const Company = () => {
               className="w-full max-h-[10rem] overflow-auto y-scroll"
             />
             <CompanyFinder ticker={company.symbol} />
+            <TenKFinder ticker={company.symbol} />
           </div>
           <Tabs
             defaultValue="profile"

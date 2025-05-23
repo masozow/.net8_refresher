@@ -7,7 +7,9 @@ import {
   type CompanyKeyMetrics,
   type CompanyProfile,
   type CompanySearch,
+  type CompanyTenK,
 } from "./company";
+import { format, yearStart } from "@formkit/tempo";
 
 export const searchCompanies = async (query: string | null) => {
   try {
@@ -127,6 +129,45 @@ export const getComparableData = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyComparableData[]>(
       `https://financialmodelingprep.com/stable/stock-peers?symbol=${query}&apikey=${
+        import.meta.env.VITE_REACT_APP_API_KEY
+      }`
+    );
+    return data?.data;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      console.log("error message: ", error.message);
+      return error.message;
+    } else {
+      console.log("Unexpected error", error);
+      return "An unexpected error has ocurred.";
+    }
+  }
+};
+
+export interface GetTenKParams {
+  query: string | null;
+  page: number;
+  maximum: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+}
+
+export const getTenK = async ({ query, page, maximum = 10 }: GetTenKParams) => {
+  try {
+    const firstDate = format({
+      date: yearStart(new Date()),
+      format: "YYYY-MM-DD",
+    });
+    const lastDate = format({
+      date: new Date(),
+      format: "YYYY-MM-DD",
+    });
+    console.log(
+      "URL from API: ",
+      `https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol=${query}&from=${firstDate}&to=${lastDate}&page=${page}&limit=${maximum}&apikey=${
+        import.meta.env.VITE_REACT_APP_API_KEY
+      }`
+    );
+    const data = await axios.get<CompanyTenK[]>(
+      `https://financialmodelingprep.com/stable/sec-filings-search/symbol?symbol=${query}&from=${firstDate}&to=${lastDate}&page=${page}&limit=${maximum}&apikey=${
         import.meta.env.VITE_REACT_APP_API_KEY
       }`
     );
