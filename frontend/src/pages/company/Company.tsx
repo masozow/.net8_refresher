@@ -39,7 +39,7 @@ const Company = () => {
             />
             <Tile
               title="Price"
-              subtitle={company.price.toString()}
+              subtitle={"$" + company.price.toString()}
               className="sm:w-1/2 md:w-1/4"
             />
             <Tile
@@ -49,7 +49,7 @@ const Company = () => {
             />
             <Tile
               title="Capitalization"
-              subtitle={company.marketCap.toString()}
+              subtitle={"$" + company.marketCap.toString()}
               className="sm:w-1/2 md:w-1/4"
             />
             <Tile

@@ -2,7 +2,6 @@ import { getTenK } from "@/API/api";
 import { type CompanyTenK } from "@/API/company";
 import { memo, useEffect, useState, type JSX } from "react";
 import TenKFinderItem from "./TenKFinderItem";
-import Tile from "../Tile/Tile";
 
 interface Props {
   ticker: string;
