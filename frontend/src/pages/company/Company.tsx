@@ -1,5 +1,6 @@
 import { getCompanyProfile } from "@/API/api";
 import type { CompanyProfile } from "@/API/company";
+import CompanyFinder from "@/components/CompanyFinder/CompanyFinder";
 import Tile from "@/components/Tile/Tile";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
@@ -54,6 +55,7 @@ const Company = () => {
               subtitle={company.description}
               className="w-full max-h-[10rem] overflow-auto y-scroll"
             />
+            <CompanyFinder ticker={company.symbol} />
           </div>
           <Tabs
             defaultValue="profile"
@@ -63,7 +65,7 @@ const Company = () => {
               <TabsTrigger value="company-profile" defaultChecked>
                 <NavLink to="company-profile">Company Profile</NavLink>
               </TabsTrigger>
-              <TabsTrigger value="income-statement" defaultChecked>
+              <TabsTrigger value="income-statement">
                 <NavLink to="income-statement">Income statement</NavLink>
               </TabsTrigger>
               <TabsTrigger value="balance-sheet">
@@ -76,13 +78,13 @@ const Company = () => {
             <TabsContent value="company-profile" defaultChecked forceMount>
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
-            <TabsContent value="income-statement">
+            <TabsContent value="income-statement" forceMount>
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
-            <TabsContent value="balance-sheet">
+            <TabsContent value="balance-sheet" forceMount>
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
-            <TabsContent value="cashflow-statement">
+            <TabsContent value="cashflow-statement" forceMount>
               <Outlet context={{ ticker } satisfies ContextType} />
             </TabsContent>
           </Tabs>

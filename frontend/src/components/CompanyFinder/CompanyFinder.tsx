@@ -1,13 +1,34 @@
+import { getComparableData } from "@/API/api";
 import type { CompanyComparableData } from "@/API/company";
-import React, { useState } from "react";
+import { memo, useEffect, useState } from "react";
+import CompanyFinderItem from "./CompanyFinderItem";
 
 interface Props {
   ticker: string;
 }
 
-const CompanyFinder = ({ ticker }: Props) => {
+const CompanyFinder = memo(({ ticker }: Props) => {
   const [companyData, setCompanyData] = useState<CompanyComparableData[]>();
-  return <div>CompanyFinder</div>;
-};
+  useEffect(() => {
+    const fetchComparableData = async () => {
+      const result = await getComparableData(ticker);
+      if (Array.isArray(result) && result.length > 0) {
+        setCompanyData(result);
+      } else if (typeof result === "string") {
+        console.error("Error fetching balance sheet:", result);
+      }
+    };
+    if (ticker) {
+      fetchComparableData();
+    }
+  }, [ticker]);
+  return (
+    <div className="inline-flex rounded-lg shadow-sm my-4">
+      {companyData?.map((data) => (
+        <CompanyFinderItem key={data.symbol} ticker={data.symbol} />
+      ))}
+    </div>
+  );
+});
 
 export default CompanyFinder;

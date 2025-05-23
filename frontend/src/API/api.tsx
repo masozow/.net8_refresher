@@ -126,7 +126,7 @@ export const getCashFlowStatement = async (query: string | null) => {
 export const getComparableData = async (query: string | null) => {
   try {
     const data = await axios.get<CompanyComparableData[]>(
-      `https://financialmodelingprep.com/stable/stock-peers?symbol${query}&apikey=${
+      `https://financialmodelingprep.com/stable/stock-peers?symbol=${query}&apikey=${
         import.meta.env.VITE_REACT_APP_API_KEY
       }`
     );
